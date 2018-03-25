@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+<h1>Bauch-style Artwork Generator</h1>
+
+<div style="float:left; padding-right: 20px">
+
+Data:<br>
+<textarea id="data" rows="5" cols="20" placeholder="Data to encode">SnoMtVnKbtCGApncmTzEXSep4kD4Gs</textarea><br>
+
+<button id="randomise">Random</button><br>
+
+Number of colours:<br>
+<input id="ncols" value="6"><br>
+
+<div id="colour-selectors">
+</div>
+
+Bricks per character:<br>
+<input id="nbricks" value="4"><br>
+
+Dimensions:<br>
+<input id="width" value="48"> x <input id="height" value="48"> bricks<br>
+
+<button id="go">Go</button>
+
+<div id="messages"></div>
+</div>
+
+<div id="generated-art"></div>
+
+<script src="jquery-3.3.1.min.js"></script>
+<script src="bauch.js"></script>
+</body>
+</html>
