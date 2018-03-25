@@ -74,6 +74,12 @@ $('#go').click(function(e) {
         colour = colour.concat(baseN);
     }
 
+    // count how many of each brick we need
+    var need = new Array();
+    for (var i = 0; i < ncols; i++) {
+        need.push(0);
+    }
+
     // convert the base-N representation into html
     $('#generated-art').css('overflow', 'auto');
     $('#generated-art').css('width', w*11);
@@ -82,11 +88,19 @@ $('#go').click(function(e) {
     $('#generated-art').css('border-image','url(radix6.png) 24 stretch');
     var html = ''
     for (var i = 0; i < w*h; i++) {
+        need[colour[i % colour.length]]++;
         col = $('#col' + colour[i % colour.length]).val();
 
         html += "<img style=\"background-color:" + col + "\" src=\"brick.png\">";
     }
     $('#generated-art').html(html);
+
+    // generate some text explaining the colour counts
+    var colhtml = 'Bricks used: ';
+    for (var i = 0; i < ncols; i++) {
+        colhtml += need[i] + "<img style=\"background-color:" + $('#col' + i).val() + "\" src=\"brick.png\">&nbsp;&nbsp;&nbsp;";
+    }
+    $('#messages').html(colhtml);
 });
 
 $('#ncols').keyup(function(e) {
@@ -99,7 +113,6 @@ $('#ncols').keyup(function(e) {
 
     for (var c = maxcol+1; c < ncols; c++) {
         $('#colour-selectors').append("<span id=\"spancol" + c + "\">" + c + " <input id=\"col" + c + "\" type=\"color\" value=\"" + default_colour(c) + "\"></span>");
-        $('#col' + c).on('input', function() { $('#go').click(); });
         $('#col' + c).on('change', function() { $('#go').click(); });
     }
 
@@ -116,6 +129,36 @@ $('#ncols').keyup(function(e) {
 
     $('#go').click();
 });
+
+$('#shuffle').click(function(e) {
+    e.preventDefault();
+
+    var ncols = parseInt($('#ncols').val());
+
+    var colours = new Array();
+    for (var i = 0; i < ncols; i++) {
+        colours.push($('#col' + i).val());
+    }
+
+    shuffle(colours);
+
+    for (var i = 0; i < ncols; i++) {
+        $('#col' + i).val(colours[i]);
+    }
+
+    $('#go').click();
+});
+
+// https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+}
 
 $('#data').keyup(function() { $('#go').click(); });
 $('#nbricks').keyup(function() { $('#go').click(); });
