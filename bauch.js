@@ -99,6 +99,8 @@ $('#ncols').keyup(function(e) {
 
     for (var c = maxcol+1; c < ncols; c++) {
         $('#colour-selectors').append("<span id=\"spancol" + c + "\">" + c + " <input id=\"col" + c + "\" type=\"color\" value=\"" + default_colour(c) + "\"></span>");
+        $('#col' + c).on('input', function() { $('#go').click(); });
+        $('#col' + c).on('change', function() { $('#go').click(); });
     }
 
     if (maxcol < ncols-1)
