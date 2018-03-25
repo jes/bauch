@@ -6,7 +6,17 @@ function default_colour(n) {
     if (n < defaultcols.length)
         return defaultcols[n];
     else
-        return 4;
+        return getRandomColor();
+}
+
+// https://stackoverflow.com/questions/1484506/random-color-generator#1484514
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
 
 $('#go').click(function(e) {
