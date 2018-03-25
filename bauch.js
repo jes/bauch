@@ -104,10 +104,21 @@ $('#ncols').keyup(function(e) {
     if (maxcol < ncols-1)
         maxcol = ncols-1;
 
+    for (var c = 0; c < ncols; c++) {
+        $('#spancol' + c).show();
+    }
+
     for (var c = ncols; c <= maxcol; c++) {
         $('#spancol' + c).hide();
     }
+
+    $('#go').click();
 });
+
+$('#data').keyup(function() { $('#go').click(); });
+$('#nbricks').keyup(function() { $('#go').click(); });
+$('#width').keyup(function() { $('#go').click(); });
+$('#height').keyup(function() { $('#go').click(); });
 
 function reset() {
     $('#messages').text('');
