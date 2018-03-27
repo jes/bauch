@@ -85,7 +85,7 @@ $('#go').click(function(e) {
     $('#generated-art').css('width', w*11);
     $('#generated-art').css('line-height', 0);
     $('#generated-art').css('border', '24px solid transparent');
-    $('#generated-art').css('border-image','url(radix6.png) 24 stretch');
+    $('#generated-art').css('border-image','url(radix6.jpg) 24 stretch');
     var html = ''
     for (var i = 0; i < w*h; i++) {
         need[colour[i % colour.length]]++;
