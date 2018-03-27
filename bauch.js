@@ -100,6 +100,7 @@ $('#go').click(function(e) {
     for (var i = 0; i < ncols; i++) {
         colhtml += need[i] + "<img style=\"background-color:" + $('#col' + i).val() + "\" src=\"brick.png\">&nbsp;&nbsp;&nbsp;";
     }
+    colhtml += "<br>Pattern repeats every <b>" + (nbricks * data.length) + "</b> bricks.";
     $('#messages').html(colhtml);
 });
 
